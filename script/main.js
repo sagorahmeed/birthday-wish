@@ -1,20 +1,27 @@
-// trigger to play music in the background with sweetalert
 window.addEventListener('load', () => {
-    Swal.fire({
-        title: 'Tisha, Do you want to play music in the background?',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes',
-        cancelButtonText: 'No',
-    }).then((result) => {
-        if (result.isConfirmed) {
-            document.querySelector('.song').play();
-            animationTimeline();
-        } else {
-            animationTimeline();
-        }
+    const song = document.querySelector('.song');
+    const overlay = document.createElement('div');
+
+    overlay.style.position = 'fixed';
+    overlay.style.top = '0';
+    overlay.style.left = '0';
+    overlay.style.width = '100%';
+    overlay.style.height = '100%';
+    overlay.style.display = 'flex';
+    overlay.style.alignItems = 'center';
+    overlay.style.justifyContent = 'center';
+    overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+    overlay.style.color = '#fff';
+    overlay.style.fontSize = '24px';
+    overlay.style.cursor = 'pointer';
+    overlay.innerText = 'Tisha, Click to Start Here';
+
+    document.body.appendChild(overlay);
+
+    overlay.addEventListener('click', () => {
+        song.play();
+        animationTimeline(); // Start your animation
+        overlay.remove(); // Remove overlay after play
     });
 });
 
