@@ -20,15 +20,13 @@ window.addEventListener('load', () => {
 
     overlay.addEventListener('click', () => {
         song.play();
-        animationTimeline(); // Start your animation
-        overlay.remove(); // Remove overlay after play
+        animationTimeline();
+        overlay.remove();
     });
 });
 
 
-// animation timeline
 const animationTimeline = () => {
-    // split chars that needs to be animated individually
     const textBoxChars = document.getElementsByClassName("hbd-chatbox")[0];
     const hbd = document.getElementsByClassName("wish-hbd")[0];
 
@@ -54,7 +52,6 @@ const animationTimeline = () => {
         skewX: "-15deg"
     }
 
-    // timeline
     const tl = new TimelineMax();
 
     tl.to(".container", 0.6, {
@@ -216,7 +213,6 @@ const animationTimeline = () => {
         0.7, {
             opacity: 0,
             y: -50,
-            // scale: 0.3,
             rotation: 150,
             skewX: "30deg",
             ease: Elastic.easeOut.config(1, 0.5),
@@ -272,9 +268,11 @@ const animationTimeline = () => {
     );
 
     
-    // Restart Animation on click
     const replyBtn = document.getElementById("replay");
     replyBtn.addEventListener("click", () => {
         tl.restart();
+        const song = document.querySelector('.song');
+        song.currentTime = 0;
+        song.play();
     });
 }
